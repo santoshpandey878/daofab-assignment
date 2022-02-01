@@ -41,9 +41,6 @@ public class JsonFileParser {
   private void parseParentJsonFile() {
     List<String> content = FileUtil.readFileFromResource(resourceLoader.getResource(parentFile));
     ParentDTO parentDTO = JsonToJavaUtilities.jsonObjectToJavaObject(content.get(0), ParentDTO.class);
-    System.out.println(content.get(0));
-    System.out.println(parentDTO);
-    System.out.println(parentDTO.getData().size());
 
     transactionInformationService.addAllTransactions(parentDTO.getData());
   }
@@ -52,9 +49,7 @@ public class JsonFileParser {
     List<String> content = FileUtil.readFileFromResource(resourceLoader.getResource(childFile));
     ChildDTO childDTO = JsonToJavaUtilities.jsonObjectToJavaObject(content.get(0), ChildDTO.class);
     List<PaymentInstallment> paymentInstallments = childDTO.getData();
-    System.out.println(content.get(0));
-    System.out.println(childDTO);
-    System.out.println(childDTO.getData().size());
+
     paymentInstallments.forEach(paymentInstallment -> {
       paymentInstallment.setTransactionInformation(transactionInformationService.getTransaction(paymentInstallment.getParentId()));
     });

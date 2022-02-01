@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable
+      author: Santosh Pandey
+      changes:
+        - sqlFile:
+            dbms: h2
+            encoding: utf8
+            endDelimiter: \n/\s*\n|\n/\s*$
+            path: changelog/scripts/01-create-transaction-and-installment-schema.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

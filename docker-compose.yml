@@ -1,0 +1,14 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3'
+
+#Define services
+services:
+
+  #Back-end Spring Boot Application
+  daofab-app:
+    #The docker file in daofab-assignment app build the jar and provides the docker image with the following name.
+    build: .
+    container_name: daofab-server
+
+    ports:
+      - 9087:9087 # Forward the exposed port 9087 on the container to port 9087 on the host machine
